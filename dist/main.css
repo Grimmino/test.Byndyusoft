@@ -313,11 +313,23 @@ template {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
+body {
+  background: #f1f1f1;
+  font: 16px/1 "Roboto", sans-serif; }
+
 .container {
   margin: 0 auto;
   max-width: 900px; }
 
-.modal {
+.feed {
+  padding: 0 16px; }
+  .feed__title {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 24px 0; }
+
+.post {
   position: fixed;
   top: 0;
   right: 0;
@@ -326,25 +338,61 @@ template {
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.6);
   padding: 50px 0; }
-  .modal__inner {
+  .post__inner {
     background: #fff;
-    max-width: 700px;
-    margin: 0 auto; }
-  .modal__header {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px; }
+  .post__header {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center; }
-  .modal__label {
+    display: flex; }
+  .post__label {
     -webkit-box-flex: 1;
         -ms-flex: 1;
-            flex: 1; }
-  .modal__close {
+            flex: 1;
+    margin: 0 0 8px 0;
+    font-weight: 700; }
+  .post__date {
+    font-size: .8rem;
+    margin: 0 0 16px 0; }
+  .post__close {
     width: 30px;
     height: 30px;
-    background: red; }
+    background: red;
+    cursor: pointer;
+    margin: 0 0 0 8px; }
+  .post__body--less {
+    overflow: hidden;
+    height: 250px; }
+  .post__body-showfull {
+    margin: 12px 0 0 0;
+    cursor: pointer; }
+    .post__body-showfull:hover {
+      color: red; }
+  .post__body p:not(:last-child) {
+    margin: 0 0 8px 0; }
+  .post__replies {
+    margin: 24px 0 0 0; }
 
+.spost {
+  cursor: pointer;
+  padding: 10px;
+  background: #ebebeb;
+  border-radius: 8px; }
+  .spost:hover {
+    background: #dadada; }
+  .spost:not(:last-child) {
+    margin: 0 0 16px 0; }
+  .spost__label {
+    margin: 0 0 8px 0;
+    font-weight: 700; }
+  .spost__date {
+    font-size: .8rem; }
 
-/*# sourceMappingURL=main.css.map*/
+.replies__item {
+  padding: 5px 0; }
+
+.reply__deep {
+  margin: 0 0 0 48px; }
+

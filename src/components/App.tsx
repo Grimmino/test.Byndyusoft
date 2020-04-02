@@ -1,37 +1,47 @@
 import React from 'react';
-import commentaries from '../db/commentaries.json';
+import { PostType } from '../general/types';
+import { posts } from '../js/postGenerator';
 
-import { ShortCommentary } from './feed/ShortCommentary';
-import { FullCommentary } from './feed/FullCommentary';
+import { ShortPost } from './feed/ShortPost';
+import { Post } from './feed/Post';
 
 export class App extends React.Component<IApp, StateApp> {
     state = {
-        isShow: false,
-        currentCommentary: {}
+        isShowPost: false,
+        currentPost: {
+            id: 0,
+            title: '',
+            body: [],
+            date: Date.now()
+        }
     };
 
-    showCommentary = (item: Commentary) => {
+    showFullPost = (post: PostType) => {
         this.setState({
-            isShow: true,
-            currentCommentary: item
+            isShowPost: true,
+            currentPost: post
         });
     };
 
-    closeCommentary = () => {
+    closePost = () => {
         this.setState({
-            isShow: false
+            isShowPost: false
         });
     };
 
     render() {
-        const { isShow, currentCommentary } = this.state;
+        const { isShowPost, currentPost } = this.state;
         return (
             <div className='container feed'>
-                {commentaries.map((item, index) => (
-                    <ShortCommentary key={index} item={item} showFull={this.showCommentary} />
-                ))}
+                <h1 className='feed__title'>posts</h1>
 
-                {isShow ? <FullCommentary item={currentCommentary} close={this.closeCommentary} /> : null}
+                <div className='feed__body'>
+                    {posts.map((item: any, index: number) => (
+                        <ShortPost key={index} post={item} showFullPost={this.showFullPost} />
+                    ))}
+
+                    {isShowPost ? <Post post={currentPost} closePost={this.closePost} /> : null}
+                </div>
             </div>
         );
     }
@@ -39,13 +49,7 @@ export class App extends React.Component<IApp, StateApp> {
 
 interface IApp {}
 
-type Commentary = {
-    label: string;
-    body: string;
-    date: number;
-};
-
 type StateApp = {
-    isShow: boolean;
-    currentCommentary: any;
+    isShowPost: boolean;
+    currentPost: PostType;
 };
