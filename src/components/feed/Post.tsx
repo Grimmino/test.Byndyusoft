@@ -1,14 +1,16 @@
 import React from 'react';
 import { PostType } from '../../general/types';
 import { RepliesList } from '../replies/RepliesList';
+import { ReplyForm } from '../replies/ReplyForm';
 
 export class Post extends React.Component<IPost, StatePost> {
     state = {
         bodyRef: React.createRef<HTMLDivElement>(),
-        postLess: false
+        postLess: false,
+        replies: []
     };
 
-    componentDidMount = () => {
+    componentDidMount = (): void => {
         if (this.state.bodyRef.current && this.state.bodyRef.current.offsetHeight > 300) {
             this.state.bodyRef.current.classList.add('post__body--less');
             this.setState({
@@ -17,7 +19,7 @@ export class Post extends React.Component<IPost, StatePost> {
         }
     };
 
-    showFullBody = () => {
+    showFullBody = (): void => {
         if (this.state.bodyRef.current) {
             this.state.bodyRef.current.classList.toggle('post__body--less');
 
@@ -25,6 +27,12 @@ export class Post extends React.Component<IPost, StatePost> {
                 postLess: !this.state.postLess
             });
         }
+    };
+
+    addNewReplay = (data: any) => {
+        this.setState((state) => ({
+            replies: state.replies.concat(data)
+        }));
     };
 
     render() {
@@ -53,7 +61,8 @@ export class Post extends React.Component<IPost, StatePost> {
                     ) : null}
 
                     <div className='post__replies replies'>
-                        <RepliesList />
+                        <RepliesList replies={this.state.replies} />
+                        <ReplyForm addNewReplay={this.addNewReplay} />
                     </div>
                 </div>
             </div>
@@ -69,4 +78,5 @@ interface IPost {
 type StatePost = {
     bodyRef: React.RefObject<HTMLDivElement>;
     postLess: boolean;
+    replies: any[];
 };
