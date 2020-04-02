@@ -3,7 +3,31 @@
     &__item
         padding: 5px 0
 
+    &__list + .form
+        margin: 24px 0 0 0 
+
 .reply
 
-    &__deep
-        margin: 0 0 0 48px
+    &:not(:last-child)
+        margin: 0 0 16px 0
+
+    &__header
+        display: flex
+        align-items: center
+        margin: 0 0 8px 0
+
+    &__date
+        font-size: .6rem
+        margin: 0 0 0 8px
+
+    &__answer
+        margin-left: auto
+        font-size: .8rem
+        color: $btn-color
+        cursor: pointer
+        &:hover
+            color: darken($btn-color, 15)
+
+    &__body
+        font-size: .8rem
+

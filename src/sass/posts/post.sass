@@ -29,9 +29,15 @@
     &__close
         width: 30px
         height: 30px
-        background: red
         cursor: pointer
         margin: 0 0 0 8px
+        transition: all .2s ease-in-out
+        &:hover
+            fill: $btn-color
+
+        &-icon
+            width: 100%
+            height: 100%
 
     &__body
         &--less

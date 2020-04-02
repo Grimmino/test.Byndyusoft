@@ -1,0 +1,28 @@
+.form
+
+    &.error
+        border: 1px solid red
+
+    &__field
+        display: flex
+
+        &:not(:last-child)
+            margin: 0 0 8px 0
+
+        &-title
+            min-width: 200px
+            padding: 7px 0 0 0
+
+    &__input
+        flex: 1
+        resize: none
+
+        &[type='text'],
+        &[type='email']
+            height: 30px
+        
+    &__textarea
+        height: 70px
+
+    &__btn
+        margin: 16px 0 0 200px

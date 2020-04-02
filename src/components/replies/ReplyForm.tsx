@@ -4,38 +4,58 @@ export class ReplyForm extends React.Component<IReplyForm> {
     handleSubmit = (e: any) => {
         e.preventDefault();
 
+        let valid: boolean = true;
+
         const data: { [key: string]: any } = {};
         const formData = new FormData(e.target);
 
         for (let [name, value] of formData) {
-            data[name] = value;
+            if (value === '') {
+                valid = false;
+            } else {
+                data[name] = value;
+            }
         }
-        this.props.addNewReplay(data);
+
+        if (valid !== false) {
+            data.date = new Date(Date.now()).toLocaleDateString().toString();
+            this.props.addNewReplay(data);
+            e.target.classList.contains('error') ? e.target.classList.remove('error') : null;
+        } else {
+            e.target.classList.add('error');
+        }
     };
 
     render() {
         return (
             <form className='form' onSubmit={this.handleSubmit} noValidate>
-                <label>
-                    <span>Имя:</span>
-                    <input name='firstName' type='text' />
+                <label className='form__field'>
+                    <span className='form__field-title'>Имя:</span>
+                    <input className='form__input' name='firstName' type='text' />
                 </label>
 
-                <label>
-                    <span>E-mail:</span>
-                    <input name='email' type='email' />
+                <label className='form__field'>
+                    <span className='form__field-title'>E-mail:</span>
+                    <input className='form__input' name='email' type='email' />
                 </label>
 
-                <label>
-                    <span>Текст комментария:</span>
-                    <textarea name='body'></textarea>
+                <label className='form__field'>
+                    <span className='form__field-title'>Текст комментария:</span>
+                    <textarea className='form__input form__textarea' name='body'></textarea>
                 </label>
 
-                <button type='submit'>Добавить комментарий</button>
+                <button className='btn form__btn' type='submit'>
+                    Добавить комментарий
+                </button>
+
+                <button type='reset' className='btn' onClick={this.props.generate}>
+                    Сгенерировать комментарий
+                </button>
             </form>
         );
     }
 }
 interface IReplyForm {
     addNewReplay: any;
+    generate: any;
 }

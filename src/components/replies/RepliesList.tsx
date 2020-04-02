@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Reply } from './Reply';
+import { Reply } from './Reply';
 
 export class RepliesList extends React.Component<IRepliesList, StateReplies> {
     render() {
@@ -8,10 +8,7 @@ export class RepliesList extends React.Component<IRepliesList, StateReplies> {
         return (
             <div className='replies__list'>
                 {replies.map((item, index) => (
-                    <div key={index}>
-                        <span>{item.firstName}</span>
-                        <span>{item.body}</span>
-                    </div>
+                    <Reply key={index} reply={item} />
                 ))}
             </div>
         );

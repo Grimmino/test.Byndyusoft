@@ -1,5 +1,5 @@
 const random = (min: number, max: number): number => {
-    return min + Math.random() * (max - min);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const stringGenerator = () => {
@@ -10,10 +10,14 @@ const stringGenerator = () => {
             .substr(1, 10);
     };
 
-    return function(number: number) {
+    const random = (min: number, max: number): number => {
+        return min + Math.random() * (max - min);
+    };
+
+    return function(a: number, b: number) {
         const stringArr: any[] = [];
 
-        for (let i = 0; i < number; i++) {
+        for (let i = 0; i < random(a, b); i++) {
             if (i === 0) {
                 stringArr.push(
                     generator()
@@ -31,22 +35,24 @@ const stringGenerator = () => {
 const getRandomParagraphs = (number: number) => {
     const paragraphs: any[] = [];
     for (let i = 0; i < number; i++) {
-        paragraphs.push(generator(random(50, 200)));
+        paragraphs.push(generator(50, 200));
     }
     return paragraphs;
 };
 
-const generator = stringGenerator();
+export const generator = stringGenerator();
 
 //==================================================================
 export const posts: any = [];
 
 const postsGenerator = () => {
+    const date = new Date(random(2019, 2020), random(0, 1), random(1, 31)).toLocaleDateString().toString();
+
     return {
         id: Date.now(),
-        title: generator(random(5, 25)),
+        title: generator(5, 25),
         body: getRandomParagraphs(random(1, 5)),
-        date: Date.now()
+        date: date
     };
 };
 

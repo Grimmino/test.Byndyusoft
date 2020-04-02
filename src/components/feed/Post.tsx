@@ -2,6 +2,7 @@ import React from 'react';
 import { PostType } from '../../general/types';
 import { RepliesList } from '../replies/RepliesList';
 import { ReplyForm } from '../replies/ReplyForm';
+import { generator } from '../../js/postGenerator';
 
 export class Post extends React.Component<IPost, StatePost> {
     state = {
@@ -35,6 +36,29 @@ export class Post extends React.Component<IPost, StatePost> {
         }));
     };
 
+    getRandomDate = () => {
+        const random = (min: number, max: number): number => {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+
+        const date = new Date(random(2019, 2020), random(0, 1), random(1, 31)).toLocaleDateString().toString();
+
+        return date;
+    };
+
+    generateRandomReply = () => {
+        const reply = {
+            firstName: generator(1, 2),
+            email: '123@123.ru',
+            body: generator(15, 50),
+            date: this.getRandomDate()
+        };
+
+        this.setState((state) => ({
+            replies: state.replies.concat(reply)
+        }));
+    };
+
     render() {
         const { post, closePost } = this.props;
         const { bodyRef, postLess } = this.state;
@@ -43,7 +67,11 @@ export class Post extends React.Component<IPost, StatePost> {
                 <div className='post__inner'>
                     <div className='post__header'>
                         <div className='post__label'>{post.title}</div>
-                        <div className='post__close' onClick={closePost}></div>
+                        <div className='post__close' onClick={closePost}>
+                            <svg className='post__close-icon'>
+                                <use xlinkHref='#close'></use>
+                            </svg>
+                        </div>
                     </div>
 
                     <div className='post__date'>{new Date(post.date).toLocaleDateString().toString()}</div>
@@ -62,7 +90,7 @@ export class Post extends React.Component<IPost, StatePost> {
 
                     <div className='post__replies replies'>
                         <RepliesList replies={this.state.replies} />
-                        <ReplyForm addNewReplay={this.addNewReplay} />
+                        <ReplyForm addNewReplay={this.addNewReplay} generate={this.generateRandomReply} />
                     </div>
                 </div>
             </div>

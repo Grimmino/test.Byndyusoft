@@ -8,7 +8,7 @@ export class ShortPost extends React.Component<IShortPost> {
             <div className='spost' onClick={() => showFullPost(post)}>
                 <div className='spost__label'>{post.title}</div>
 
-                <div className='spost__date'>{new Date(post.date).toLocaleDateString().toString()}</div>
+                <div className='spost__date'>{post.date}</div>
             </div>
         );
     }

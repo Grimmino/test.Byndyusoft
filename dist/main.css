@@ -307,6 +307,45 @@ template {
 [hidden] {
   display: none; }
 
+.btn {
+  border: none;
+  background: #0ebff5;
+  padding: 5px 8px;
+  color: #f1f1f1;
+  cursor: pointer;
+  -webkit-transition: background .2s ease-in-out;
+  -o-transition: background .2s ease-in-out;
+  transition: background .2s ease-in-out; }
+  .btn:hover {
+    background: #0788af; }
+
+.form.error {
+  border: 1px solid red; }
+
+.form__field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .form__field:not(:last-child) {
+    margin: 0 0 8px 0; }
+  .form__field-title {
+    min-width: 200px;
+    padding: 7px 0 0 0; }
+
+.form__input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  resize: none; }
+  .form__input[type='text'], .form__input[type='email'] {
+    height: 30px; }
+
+.form__textarea {
+  height: 70px; }
+
+.form__btn {
+  margin: 16px 0 0 200px; }
+
 * {
   margin: 0;
   padding: 0;
@@ -320,6 +359,9 @@ body {
 .container {
   margin: 0 auto;
   max-width: 900px; }
+
+a {
+  color: #0ebff5; }
 
 .feed {
   padding: 0 16px; }
@@ -359,9 +401,16 @@ body {
   .post__close {
     width: 30px;
     height: 30px;
-    background: red;
     cursor: pointer;
-    margin: 0 0 0 8px; }
+    margin: 0 0 0 8px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out; }
+    .post__close:hover {
+      fill: #0ebff5; }
+    .post__close-icon {
+      width: 100%;
+      height: 100%; }
   .post__body--less {
     overflow: hidden;
     height: 250px; }
@@ -393,6 +442,33 @@ body {
 .replies__item {
   padding: 5px 0; }
 
-.reply__deep {
-  margin: 0 0 0 48px; }
+.replies__list + .form {
+  margin: 24px 0 0 0; }
+
+.reply:not(:last-child) {
+  margin: 0 0 16px 0; }
+
+.reply__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 8px 0; }
+
+.reply__date {
+  font-size: .6rem;
+  margin: 0 0 0 8px; }
+
+.reply__answer {
+  margin-left: auto;
+  font-size: .8rem;
+  color: #0ebff5;
+  cursor: pointer; }
+  .reply__answer:hover {
+    color: #0788af; }
+
+.reply__body {
+  font-size: .8rem; }
 

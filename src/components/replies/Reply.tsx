@@ -2,28 +2,24 @@ import React from 'react';
 
 export class Reply extends React.Component<IReply> {
     render() {
-        const { data } = this.props;
+        const { reply } = this.props;
         return (
             <div className='reply'>
-                <span>{data.name}</span>
-                <p>{data.body}</p>
-                <div className='reply__deep'>
-                    <div className='reply__deep-list'>
-                        <div className='reply'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, ullam.</div>
-                    </div>
+                <div className='reply__header'>
+                    <a className='reply__name' href='#'>
+                        {reply.firstName}
+                    </a>
+
+                    <div className='reply__date'>{reply.date}</div>
+
+                    <div className='reply__answer'>Ответить</div>
                 </div>
+                <div className='reply__body'>{reply.body}</div>
             </div>
         );
     }
 }
-interface IReply {
-    data: { [key: string]: any };
-}
 
-{
-    /* <div className='reply__deep'>
-                    <div className='reply__deep-list'>
-                        <div className='reply'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, ullam.</div>
-                    </div>
-                </div> */
+interface IReply {
+    reply: { [key: string]: any };
 }
