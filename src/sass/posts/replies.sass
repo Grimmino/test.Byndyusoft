@@ -5,11 +5,15 @@
 
     &__list + .form
         margin: 24px 0 0 0 
+    
+    &__deep
+        margin: 0 0 0 48px
+
+        & + .form
+            margin: 0 0 24px 48px
 
 .reply
-
-    &:not(:last-child)
-        margin: 0 0 16px 0
+    margin: 0 0 16px 0
 
     &__header
         display: flex
@@ -19,6 +23,19 @@
     &__date
         font-size: .6rem
         margin: 0 0 0 8px
+
+    &__likes
+        display: flex
+        margin: 0 0 0 8px
+        &-item
+            padding: 3px 5px
+            cursor: pointer
+            background: $details-color
+            &:hover
+                background: $btn-color
+
+            &:not(:last-child)
+                margin: 0 8px 0 0
 
     &__answer
         margin-left: auto
@@ -31,3 +48,13 @@
     &__body
         font-size: .8rem
 
+    &__security
+        display: inline-block
+        margin: 8px 0 0 0
+        font-size: .7rem
+        padding: 4px 6px
+        cursor: pointer
+        background: $add-color
+
+        &:hover
+            background: $btn-color

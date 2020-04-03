@@ -44,13 +44,15 @@ export class ReplyForm extends React.Component<IReplyForm> {
                     <textarea className='form__input form__textarea' name='body'></textarea>
                 </label>
 
-                <button className='btn form__btn' type='submit'>
-                    Добавить комментарий
-                </button>
+                <div className='form__footer'>
+                    <button className='btn form__btn' type='submit'>
+                        Добавить комментарий
+                    </button>
 
-                <button type='reset' className='btn' onClick={this.props.generate}>
-                    Сгенерировать комментарий
-                </button>
+                    <button type='reset' className='btn' onClick={this.props.generate}>
+                        Сгенерировать комментарий
+                    </button>
+                </div>
             </form>
         );
     }
