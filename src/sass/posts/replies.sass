@@ -12,8 +12,26 @@
         & + .form
             margin: 0 0 24px 48px
 
+    &__toggler
+        margin: 0 0 16px 0
+        font-size: .8rem
+        color: $btn-color
+        cursor: pointer
+        &:hover
+            color: darken($btn-color, 15)
+
 .reply
     margin: 0 0 16px 0
+    display: flex
+
+    &__avatar
+        height: 80px
+        width: 80px
+        background: $details-color
+        margin: 0 16px 0 0
+
+    &__info
+        flex: 1
 
     &__header
         display: flex

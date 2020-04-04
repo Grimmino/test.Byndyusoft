@@ -51,35 +51,38 @@ export class Reply extends React.Component<IReply, StateReply> {
         return (
             <React.Fragment>
                 <div className='reply'>
-                    <div className='reply__header'>
-                        <a className='reply__name' href='#'>
-                            {reply.firstName}
-                        </a>
+                    <div className='reply__avatar'></div>
+                    <div className='reply__info'>
+                        <div className='reply__header'>
+                            <a className='reply__name' href='#'>
+                                {reply.firstName}
+                            </a>
 
-                        <div className='reply__date'>{reply.date}</div>
+                            <div className='reply__date'>{reply.date}</div>
 
-                        <div className='reply__likes'>
-                            <div className='reply__likes-item' onClick={this.countMinus}>
-                                -
+                            <div className='reply__likes'>
+                                <div className='reply__likes-item' onClick={this.countMinus}>
+                                    -
+                                </div>
+                                <div className='reply__likes-item'>{count}</div>
+                                <div className='reply__likes-item' onClick={this.countPlus}>
+                                    +
+                                </div>
                             </div>
-                            <div className='reply__likes-item'>{count}</div>
-                            <div className='reply__likes-item' onClick={this.countPlus}>
-                                +
+
+                            <div className='reply__answer' onClick={this.addDeepRely}>
+                                Ответить
                             </div>
                         </div>
 
-                        <div className='reply__answer' onClick={this.addDeepRely}>
-                            Ответить
-                        </div>
+                        {!isHide() || showBodyReply ? <div className='reply__body'>{reply.body}</div> : null}
+
+                        {this.state.count <= -10 ? (
+                            <span className='reply__security' onClick={this.toggleHideReply}>
+                                {!showBodyReply ? 'показать' : 'скрыть'}
+                            </span>
+                        ) : null}
                     </div>
-
-                    {!isHide() || showBodyReply ? <div className='reply__body'>{reply.body}</div> : null}
-
-                    {this.state.count <= -10 ? (
-                        <span className='reply__security' onClick={this.toggleHideReply}>
-                            {!showBodyReply ? 'показать' : 'скрыть'}
-                        </span>
-                    ) : null}
                 </div>
 
                 {addDeepReply ? <RepliesDeepList toggleForm={this.showForm} setDeep={true} showForm={showForm} /> : null}

@@ -19,9 +19,30 @@ export class RepliesList extends React.Component<IRepliesList, StateReplies> {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         };
 
-        const date = new Date(random(2019, 2020), random(0, 1), random(1, 31)).toLocaleDateString().toString();
+        const date = new Date(random(2019, 2020), random(0, 1), random(1, 31), random(0, 23), random(0, 60), random(0, 60));
+        const dateNow = Date.now() - random(1000, 10000) * random(1, 60);
 
-        return date;
+        const randonmDay = Math.random() > 0.5 ? dateNow : date.getTime();
+
+        const res = Date.now() - randonmDay;
+        const sec = Number((res / 1000).toFixed());
+        const min = Number((sec / 60).toFixed());
+        const h = Number((min / 60).toFixed());
+        const day = Number((h / 24).toFixed());
+
+        let result = '';
+
+        if (day > 1) {
+            result = `${day} дней назад`;
+        } else if (h > 1) {
+            result = `${h} часов назад`;
+        } else if (min > 1) {
+            result = `${min} минут назад`;
+        } else {
+            result = `${sec} секунд назад`;
+        }
+
+        return result;
     };
 
     generateRandomReply = () => {

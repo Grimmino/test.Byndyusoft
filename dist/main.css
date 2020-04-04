@@ -452,8 +452,28 @@ a {
   .replies__deep + .form {
     margin: 0 0 24px 48px; }
 
+.replies__toggler {
+  margin: 0 0 16px 0;
+  font-size: .8rem;
+  color: #0ebff5;
+  cursor: pointer; }
+  .replies__toggler:hover {
+    color: #0788af; }
+
 .reply {
-  margin: 0 0 16px 0; }
+  margin: 0 0 16px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .reply__avatar {
+    height: 80px;
+    width: 80px;
+    background: #dadada;
+    margin: 0 16px 0 0; }
+  .reply__info {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
   .reply__header {
     display: -webkit-box;
     display: -ms-flexbox;

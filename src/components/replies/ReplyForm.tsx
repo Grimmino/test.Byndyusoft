@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class ReplyForm extends React.Component<IReplyForm> {
+export class ReplyForm extends React.Component<IReplyForm, StateReplyForm> {
     handleSubmit = (e: any) => {
         e.preventDefault();
 
@@ -18,7 +18,7 @@ export class ReplyForm extends React.Component<IReplyForm> {
         }
 
         if (valid !== false) {
-            data.date = new Date(Date.now()).toLocaleDateString().toString();
+            data.date = 'только что';
             this.props.addNewReplay(data);
             e.target.classList.contains('error') ? e.target.classList.remove('error') : null;
         } else {
@@ -28,7 +28,7 @@ export class ReplyForm extends React.Component<IReplyForm> {
 
     render() {
         return (
-            <form className='form' onSubmit={this.handleSubmit} noValidate>
+            <form className='form' onSubmit={this.handleSubmit}>
                 <label className='form__field'>
                     <span className='form__field-title'>Имя:</span>
                     <input className='form__input' name='firstName' type='text' />
@@ -61,3 +61,5 @@ interface IReplyForm {
     addNewReplay: any;
     generate: any;
 }
+
+type StateReplyForm = {};
